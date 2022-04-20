@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : SingletonGeneric<PlayerMovement>
 {
@@ -14,13 +15,18 @@ public class PlayerMovement : SingletonGeneric<PlayerMovement>
     Camera cam;
     float touchPosX;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        GameStateManager.Instance.OnGameStateChange += OnGameStateChange;
+    }
+
     void Start()
     {
         startPosition = transform.position;
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
         moveUp();
+
     }
 
     // Update is called once per frame
@@ -109,4 +115,17 @@ public class PlayerMovement : SingletonGeneric<PlayerMovement>
 
 
     }
+    private void OnGameStateChange(GameState newGameState)
+    {
+        enabled = newGameState == GameState.GamePlay;
+    }
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("LevelEnd"))
+        {
+            Debug.Log("Level Complete");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+    }
 }
+
