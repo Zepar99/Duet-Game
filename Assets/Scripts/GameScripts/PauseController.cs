@@ -22,6 +22,6 @@ public class PauseController : MonoBehaviour
     public void Home(int sceneID)
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(0);
     }
 }
