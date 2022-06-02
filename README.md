@@ -2,6 +2,9 @@
 This is a hypercasual game in which you have to complete the level without hiting the obstacles else you have to restart form start again.
 In this game i have tried various new featurs like splash of paint when the ball hit to the obstacle small animation using DoTween.
 # Features
+- Desing Pattern used
+   - **Singleton**
+   - **State Machine**
 - Sample Mechanics.
 - Added Music.
 - Hyper Casual.
